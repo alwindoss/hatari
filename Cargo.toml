@@ -1,7 +1,14 @@
 [package]
 name = "hatari"
-version = "0.1.0"
+version = "0.0.1"
 edition = "2021"
+authors = ["Alwin Doss <alwindoss84@gmail.com>"]
+description = "Risk management system"
+documentation = "https://doc.rs/hatari"
+readme = "README.md"
+homepage = "https://hatari.dalw.in"
+repository = "https://github.com/alwindoss/hatari"
+license-file = "LICENSE"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
