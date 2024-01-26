@@ -1,3 +1,3 @@
 # Hatari
 
-Risk Management System
+Fast, secure, efficient backup program
