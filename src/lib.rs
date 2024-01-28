@@ -1,5 +1,6 @@
-use clap::Parser;
+use std::{env::args, path::PathBuf};
 
+use clap::{Parser, Subcommand};
 mod repository;
 
 #[cfg(test)]
@@ -11,25 +12,24 @@ mod tests {
     }
 }
 
-/// Simple program to greet a person
-#[derive(Parser, Debug)]
+#[derive(Parser)]
 #[command(author, version, about, long_about = None)]
-struct Args {
-    /// Name of the repository
-    #[arg(short, long)]
-    repository: String,
-
-    /// Number of times to greet
-    #[arg(short, long, default_value_t = 1)]
-    count: u8,
+struct Cli {
+    /// Name of the program
+    name: String,
+    #[arg(short, long, default_value = "./repo")]
+    /// Path where the repository is created
+    repo: PathBuf,
 }
 
 pub fn run() -> Result<bool, Box<dyn std::error::Error>> {
-    repository::repository::create("loc");
-    let args = Args::parse();
-
-    for _ in 0..args.count {
-        println!("Repository to be used: {}", args.repository);
+    let cli = Cli::parse();
+    println!("Name: {}", cli.name);
+    println!("Repository will bre created @ {:?}", cli.repo);
+    let res = repository::create(&cli.repo);
+    match res {
+        Ok(_) => println!("Created repository"),
+        Err(_) => (),
     }
     return Ok(true);
 }
